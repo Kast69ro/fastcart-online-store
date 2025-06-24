@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
@@ -14,14 +14,12 @@ const Category = () => {
 
   return (
     <div className="p-[20px_45px]">
-      {/* Title */}
       <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
         <div>
           <h2 className="text-red-500 font-semibold">Categories</h2>
           <h1 className="text-3xl font-bold">Browse By Category</h1>
         </div>
 
-        {/* Slider Buttons */}
         <div className="hidden lg:flex gap-3">
           <button
             ref={prevRef}
@@ -38,7 +36,6 @@ const Category = () => {
         </div>
       </div>
 
-      {/* Swiper */}
       <Swiper
         spaceBetween={20}
         slidesPerView={1.2}
@@ -62,7 +59,6 @@ const Category = () => {
         {category.map((cat) => (
           <SwiperSlide key={cat.id}>
             <div className="bg-white p-4 rounded-xl shadow text-center flex flex-col items-center">
-              {/* Image */}
               <div className="w-full h-32 flex items-center justify-center mb-2">
                 <img
                   src={`http://37.27.29.18:8002/images/${cat.categoryImage}`}
@@ -71,7 +67,6 @@ const Category = () => {
                 />
               </div>
 
-              {/* Name */}
               <h3 className="text-sm font-medium">{cat.categoryName}</h3>
             </div>
           </SwiperSlide>

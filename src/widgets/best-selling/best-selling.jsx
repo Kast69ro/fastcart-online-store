@@ -1,30 +1,39 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-import heart from '#/heart small.png'
-import look from '#/Quick View.png'
-import { useSelector } from "react-redux";
-
-
+import heart from "#/heart small.png";
+import look from "#/Quick View.png";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../../entities/cart/cart-slice";
+import { Link, useNavigate } from "react-router-dom";
 
 const FlashSales = () => {
+  const product = useSelector((state) => state.home.dataProduct);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const product = useSelector((state)=>state.home.dataProduct)
+  const handleAdd = (id) => {
+    if (localStorage.getItem("token") != null) {
+      dispatch(addToCart(id));
+    } else {
+      navigate("/log-in");
+    }
+  };
 
   return (
     <div className="p-[20px_45px]">
-      {/* Title + View Button */}
       <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
         <div>
           <h2 className="text-red-500 font-semibold">This Month</h2>
           <h1 className="text-3xl font-bold">Best Selling Products</h1>
         </div>
-        <button className="bg-red-500 text-white px-6 py-2 rounded-md font-semibold">
-          View All Products
-        </button>
+        <Link to="/products">
+          <button className="bg-red-500 text-white px-6 py-2 rounded-md font-semibold">
+            View All Products
+          </button>
+        </Link>
       </div>
 
-      {/* Swiper */}
       <Swiper
         spaceBetween={20}
         slidesPerView={1.2}
@@ -37,12 +46,6 @@ const FlashSales = () => {
         {product.map((el) => (
           <SwiperSlide key={el.id}>
             <div className="relative group bg-white p-4 rounded-xl shadow hover:shadow-md transition-all duration-300">
-              {/* Discount */}
-              {/* <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded">
-                -{product.discount}%
-              </div> */}
-
-              {/* Icons */}
               <div className="absolute top-2 right-2 flex flex-col gap-2">
                 <div className="bg-white w-8 h-8 rounded-full shadow flex items-center justify-center">
                   <img src={heart} alt="Like" className="w-4 h-4" />
@@ -52,26 +55,25 @@ const FlashSales = () => {
                 </div>
               </div>
 
-              {/* Image */}
               <div className="w-full h-40 flex items-center justify-center">
                 <img
-                  src={'http://37.27.29.18:8002/images/' + el.image}
+                  src={"http://37.27.29.18:8002/images/" + el.image}
                   alt={el.productName}
                   className="max-h-full object-contain"
                 />
               </div>
 
-              {/* Name + Price */}
               <h3 className="mt-4 text-sm font-medium">{el.nameProduct}</h3>
               <div className="mt-1 flex items-center gap-2">
                 <span className="text-red-500 font-semibold">${el.price}</span>
-                {/* <span className="line-through text-gray-400 text-sm">${product.oldPrice}</span> */}
               </div>
-              {/* <div className="text-yellow-400 text-sm mt-1">⭐ {product.rating}</div> */}
+              <div className="text-yellow-400 text-sm mt-1">⭐⭐⭐⭐⭐ </div>
 
-              {/* Add To Cart (hover) */}
               <div className="absolute bottom-0 left-0 right-0 translate-y-0 md:translate-y-full md:group-hover:translate-y-0 transition-all duration-300">
-                <button className="w-full bg-black text-white py-2 rounded-b-xl text-sm font-medium">
+                <button
+                  className="w-full bg-black text-white py-2 rounded-b-xl text-sm font-medium"
+                  onClick={() => handleAdd(el.id)}
+                >
                   Add To Cart
                 </button>
               </div>

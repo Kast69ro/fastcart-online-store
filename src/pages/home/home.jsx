@@ -11,7 +11,7 @@ import Card3 from "../../entities/for-about/thrid-card";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getCategory } from "../../entities/for-about/home/home-slice";
+import { getCategory } from "../../entities/home/home-slice";
 
 export default function Home() {
   const category = useSelector((state) => state.home.dataCategory);

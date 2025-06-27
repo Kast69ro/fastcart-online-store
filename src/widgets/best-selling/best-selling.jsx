@@ -4,8 +4,8 @@ import "swiper/css";
 import heart from "#/heart small.png";
 import look from "#/Quick View.png";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart } from "../../entities/cart/cart-slice";
 import { Link, useNavigate } from "react-router-dom";
+import { addToCart } from "../../entities/api/cart/cart";
 
 const FlashSales = () => {
   const product = useSelector((state) => state.home.dataProduct);

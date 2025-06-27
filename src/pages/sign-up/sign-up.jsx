@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { logIn, resetStatus } from "../../entities/log-in/log-in";
+// import { logIn, resetStatus } from "../../entities/log-in/log-in";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {resetStatus} from '../../entities/slices/log-in/log-in'
 
-import Alert from "@mui/material/Alert";
-import Stack from "@mui/material/Stack";
+import { Toaster } from "sonner";
+import { logIn } from "../../entities/api/login/login";
 
 export default function Sign() {
   const statusCode = useSelector((state) => state.login.statusCode);
@@ -31,6 +32,7 @@ export default function Sign() {
   };
 
   return (
+    <>
     <div className=" flex w-[90%]  flex-col mt-[70px]  gap-[40px] lg:w-[30%]  mx-auto ">
       <div>
         <h2 className="text-[30px] lg:text-[40px] font-bold">
@@ -45,14 +47,14 @@ export default function Sign() {
           type="email"
           placeholder="User name "
           className="p-[10px_20px] border-[1px] border-[grey] rounded"
-        />
+          />
         <input
           value={userPassword}
           onChange={(e) => setUserPassword(e.target.value)}
           type="text"
           placeholder="password"
           className="p-[10px_20px] border-[1px] border-[grey] rounded"
-        />
+          />
       </div>
       <div className="flex flex-col gap-[10px]">
         <p className="flex  justify-center gap-[20px] p-[10px_20px] text-[#DB4444]  ">
@@ -61,12 +63,14 @@ export default function Sign() {
         <button
           className="bg-[#DB4444] p-[10px_20px] rounded text-[#fff]"
           onClick={handleAdd}
-        >
+          >
           Log In
         </button>
         
       </div>
       
     </div>
+    <Toaster richColors position="bottom-right" />
+          </>
   );
 }

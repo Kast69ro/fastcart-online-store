@@ -7,11 +7,11 @@ import time from "#/Frame 601.png";
 import card5 from "#/Services (4).png";
 import card6 from "#/Services (5).png";
 import card7 from "#/Services (6).png";
-import Card3 from "../../entities/for-about/thrid-card";
+import Card3 from "../../widgets/for-about/thrid-card";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getCategory } from "../../entities/home/home-slice";
+import { getCategory } from "../../entities/api/home/home";
 
 export default function Home() {
   const category = useSelector((state) => state.home.dataCategory);

@@ -2,8 +2,9 @@ import icon from "#/Icon-Google.png";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { postUser } from "../../entities/api/registrate/registrate";
+import { resetStatus } from "../../entities/slices/log-in/log-in";
 
-import { postUser, resetStatus } from "../../entities/registrate/registrate";
 
 export default function CreateAccount() {
   const [userName, setUserName] = useState("");
@@ -38,7 +39,7 @@ export default function CreateAccount() {
   }, [statusCode]);
 
   return (
-    <div className="flex w-[90%] flex-col mt-[50px] gap-[30px] lg:w-[30%] mx-auto">
+    <div className="flex w-[90%] flex-col mt-[50px] my-[50px] gap-[30px] lg:w-[30%] mx-auto">
       <div>
         <h2 className="text-[30px] lg:text-[40px] font-bold">Create an account</h2>
         <p className="text-[18px]">Enter your details below</p>

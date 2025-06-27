@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import  homeSlice  from "../../entities/home/home-slice";
-import  regisyrateSlice  from "../../entities/registrate/registrate";
-import cartSlice from "../../entities/cart/cart-slice";
-import   logInSlice  from "../../entities/log-in/log-in";
+import homeSlice from '../../entities/slices/home/home-slice'
+import cartSlice from '../../entities/slices/cart/cart-slice'
+import regisyrateSlice from '../../entities/slices/registrate/registrate'
+import logInSlice from '../../entities/slices/log-in/log-in'
+import getUserById from '../../entities/slices/account/account-slice'
 
 
 export const Store = configureStore({
@@ -10,6 +11,7 @@ export const Store = configureStore({
         home:homeSlice,
         registrate:regisyrateSlice,
         cart:cartSlice,
-        login:logInSlice
+        login:logInSlice,
+        account:getUserById
     }
 })

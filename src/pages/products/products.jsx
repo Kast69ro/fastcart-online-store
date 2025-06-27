@@ -6,7 +6,7 @@ import {
   Select,
   TextField,
 } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Accordion from '@mui/material/Accordion'
 import AccordionActions from '@mui/material/AccordionActions'
 import AccordionSummary from '@mui/material/AccordionSummary'
@@ -14,14 +14,40 @@ import AccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Button from '@mui/material/Button'
-import keyboard from '#/ak-900-01-500x500 1.png'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProduct } from '../../entities/api/home/home'
+
+import heart from '#/heart small.png'
+import look from '#/Quick View.png'
+import { addToCart } from '../../entities/api/cart/cart'
 
 export default function Products() {
-  const [age, setAge] = useState('')
 
+  const product = useSelector((state)=>state.home.dataProduct)
+  const dispatch = useDispatch()
+  
+  
+  const [age, setAge] = useState('')
   const handleChange = event => {
     setAge(event.target.value)
   }
+
+ useEffect(() => {
+  
+  dispatch(getProduct())
+ }, []);
+
+ const handleAdd = (id) => {
+        if (localStorage.getItem("token") != null) {
+          dispatch(addToCart(id));
+        } else {
+          navigate("/log-in");
+        }
+      };
+
+
+
+
   return (
     <>
       <div className='flex justify-around items-center mt-[50px]'>
@@ -128,8 +154,6 @@ export default function Products() {
                   </li>
                   <li className='text-[#DB4444]'>See all</li>
                 </ul>
-              {/* </AccordionDetails> */}
-              {/* <AccordionActions></AccordionActions> */}
             </Accordion>
 
             <Accordion defaultExpanded>
@@ -198,184 +222,52 @@ export default function Products() {
               </AccordionDetails>
               <AccordionActions></AccordionActions>
             </Accordion>
-              <Accordion defaultExpanded>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls='panel3-content'
-                id='panel3-header'
-              >
-                <Typography component='span'>
-                  <b>Condition</b>
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <ul className='flex flex-col gap-[30px]'>
-                  <li className='flex items-center gap-[10px]'>
-                     <input type='checkbox' /> ⭐️⭐️⭐️⭐️⭐️
- 
-                  </li>
-                  <input type='checkbox' /> ⭐️⭐️⭐️⭐️⭐️
-                  <li className='flex items-center gap-[10px]'>
-                    <input type='checkbox' /> ⭐️⭐️⭐️⭐️⭐️
-                  </li>
-                  <li className='flex items-center gap-[10px]'>
-                    <input type='checkbox' /> ⭐️⭐️⭐️⭐️⭐️
-                  </li>
-                  <li className='flex items-center gap-[10px]'>
-                    <input type='checkbox' /> ⭐️⭐️⭐️⭐️⭐️{' '}
-                  </li>
-                  <li className='flex items-center gap-[10px]'>
-                    <input type='checkbox' /> ⭐️⭐️⭐️⭐️⭐️
-                  </li>
-                  <li className='text-[#DB4444]'>See all</li>
-                </ul>
-              </AccordionDetails>
-              <AccordionActions></AccordionActions>
-            </Accordion>
+            
           </div>
         </aside>
 
-          <aside className=' flex flex-wrap w-[70%] gap-6 justify-around m-auto md:m-0 mt-[40px]'>
-           <div className='p-4 border rounded-lg bg-white shadow-md max-h-96 w-[300px]'>
-              <div className='flex justify-between items-center'>
-                <span className='bg-red-400 text-white px-[15px] py-[5px] rounded-[10px]'>
-                  -10%
-                </span>
+          <aside className=' flex flex-wrap w-[70%] gap-[20px] justify-start m-auto md:m-0 mt-[40px]'>
+            {product.map((el)=>{
+              return(
+                  <div key={el.id} className="relative group overflow-hidden w-[40%] bg-white p-4 rounded-xl shadow hover:shadow-md transition-all duration-300">
                 
-              </div>
-              <div className='flex flex-col'>
-                <img
-                  src={keyboard}
-                  className='h-[150px] w-full object-contain mb-2'
-                />
+                              <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded">
+                                -{el.discountPrice}%
+                              </div>
                 
-              </div>
-              <h3 className='text-sm font-semibold mt-[10px]'>
-                AK-900 Wired Keyboard
-              </h3>
-              <p className='text-red-500 font-bold'>$960</p>
-              <p className=''>⭐️⭐️⭐️⭐️⭐️(75)</p>
-            </div>
-             <div className='p-4 border rounded-lg bg-white shadow-md max-h-96 w-[300px]'>
-              <div className='flex justify-between items-center'>
-                <span className='bg-red-400 text-white px-[15px] py-[5px] rounded-[10px]'>
-                  -10%
-                </span>
+                              <div className="absolute top-2 right-2 flex flex-col gap-2">
+                                <div className="bg-white w-8 h-8 rounded-full shadow flex items-center justify-center">
+                                  <img src={heart} alt="Like" className="w-4 h-4" />
+                                </div>
+                                <div className="bg-white w-8 h-8 rounded-full shadow flex items-center justify-center">
+                                  <img src={look} alt="View" className="w-4 h-4" />
+                                </div>
+                              </div>
                 
-              </div>
-              <div className='flex flex-col'>
-                <img
-                  src={''}
-                  className='h-[150px] w-full object-contain mb-2'
-                />
+                              <div className="w-full h-40 flex items-center justify-center">
+                                <img
+                                  src={'http://37.27.29.18:8002/images/' + el.image}
+                                  alt={el.productName}
+                                  className="max-h-full object-contain"
+                                />
+                              </div>
                 
-              </div>
-              <h3 className='text-sm font-semibold mt-[10px]'>
-                AK-900 Wired Keyboard
-              </h3>
-              <p className='text-red-500 font-bold'>$960</p>
-              <p className=''>⭐️⭐️⭐️⭐️⭐️(75)</p>
-            </div>
-             <div className='p-4 border rounded-lg bg-white shadow-md max-h-96 w-[300px]'>
-              <div className='flex justify-between items-center'>
-                <span className='bg-red-400 text-white px-[15px] py-[5px] rounded-[10px]'>
-                  -10%
-                </span>
+                              <h3 className="mt-4 text-sm font-medium">{el.productName}</h3>
+                              <div className="mt-1 flex items-center gap-2">
+                                <span className="text-red-500 font-semibold">${el.price}</span>
+                              </div>
+                                <div className="text-yellow-400 text-sm mt-1">⭐⭐⭐⭐⭐ </div>
                 
-              </div>
-              <div className='flex flex-col'>
-                <img
-                  src={''}
-                  className='h-[150px] w-full object-contain mb-2'
-                />
-                
-              </div>
-              <h3 className='text-sm font-semibold mt-[10px]'>
-                AK-900 Wired Keyboard
-              </h3>
-              <p className='text-red-500 font-bold'>$960</p>
-              <p className=''>⭐️⭐️⭐️⭐️⭐️(75)</p>
-            </div>
-             <div className='p-4 border rounded-lg bg-white shadow-md max-h-96 w-[300px]'>
-              <div className='flex justify-between items-center'>
-                <span className='bg-red-400 text-white px-[15px] py-[5px] rounded-[10px]'>
-                  -10%
-                </span>
-                
-              </div>
-              <div className='flex flex-col'>
-                <img
-                  src={''}
-                  className='h-[150px] w-full object-contain mb-2'
-                />
-                
-              </div>
-              <h3 className='text-sm font-semibold mt-[10px]'>
-                AK-900 Wired Keyboard
-              </h3>
-              <p className='text-red-500 font-bold'>$960</p>
-              <p className=''>⭐️⭐️⭐️⭐️⭐️(75)</p>
-            </div>
-             <div className='p-4 border rounded-lg bg-white shadow-md max-h-96 w-[300px]'>
-              <div className='flex justify-between items-center'>
-                <span className='bg-red-400 text-white px-[15px] py-[5px] rounded-[10px]'>
-                  -10%
-                </span>
-                
-              </div>
-              <div className='flex flex-col'>
-                <img
-                  src={''}
-                  className='h-[150px] w-full object-contain mb-2'
-                />
-                
-              </div>
-              <h3 className='text-sm font-semibold mt-[10px]'>
-                AK-900 Wired Keyboard
-              </h3>
-              <p className='text-red-500 font-bold'>$960</p>
-              <p className=''>⭐️⭐️⭐️⭐️⭐️(75)</p>
-            </div>
-             <div className='p-4 border rounded-lg bg-white shadow-md max-h-96 w-[300px]'>
-              <div className='flex justify-between items-center'>
-                <span className='bg-red-400 text-white px-[15px] py-[5px] rounded-[10px]'>
-                  -10%
-                </span>
-                
-              </div>
-              <div className='flex flex-col'>
-                <img
-                  src={''}
-                  className='h-[150px] w-full object-contain mb-2'
-                />
-                
-              </div>
-              <h3 className='text-sm font-semibold mt-[10px]'>
-                AK-900 Wired Keyboard
-              </h3>
-              <p className='text-red-500 font-bold'>$960</p>
-              <p className=''>⭐️⭐️⭐️⭐️⭐️(75)</p>
-            </div>
-             <div className='p-4 border rounded-lg bg-white shadow-md h-[45vh] w-[300px]'>
-              <div className='flex justify-between items-center'>
-                <span className='bg-red-400 text-white px-[15px] py-[5px] rounded-[10px]'>
-                  -10%
-                </span>
-                
-              </div>
-              <div className='flex flex-col'>
-                <img
-                  src={''}
-                  className='h-[150px] w-full object-contain mb-2'
-                />
-                
-              </div>
-              <h3 className='text-sm font-semibold mt-[10px]'>
-                AK-900 Wired Keyboard
-              </h3>
-              <p className='text-red-500 font-bold'>$960</p>
-              <p className=''>⭐️⭐️⭐️⭐️⭐️(75)</p>
-            </div>
+                              <div className="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-all duration-300">
+
+                                <button className="w-full bg-black text-white py-2 rounded-b-xl text-sm font-medium"
+                                onClick={()=>handleAdd(el.id)}>
+                                  Add To Cart
+                                </button>
+                              </div>
+                            </div>
+              )
+            })}
             
           </aside>
       </section>

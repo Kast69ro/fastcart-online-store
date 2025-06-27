@@ -7,9 +7,9 @@ import card5 from "#/Services (4).png";
 import card6 from "#/Services (5).png";
 import card7 from "#/Services (6).png";
 import person from "#/Frame 874.png";
-import Card from "../../entities/for-about/first-card";
-import Card2 from "../../entities/for-about/second-card";
-import Card3 from "../../entities/for-about/thrid-card";
+import Card from '../../widgets/for-about/first-card'
+import Card2 from '../../widgets/for-about/second-card'
+import Card3 from '../../widgets/for-about/thrid-card'
 
 export default function About() {
   return (

@@ -8,9 +8,9 @@ import look from '#/Quick View.png'
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getProduct } from "../../entities/home/home-slice";
-import { addToCart } from "../../entities/cart/cart-slice";
 import { Link } from "react-router-dom";
+import { getProduct } from "../../entities/api/home/home";
+import { addToCart } from "../../entities/api/cart/cart";
 
 
 

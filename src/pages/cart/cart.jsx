@@ -1,12 +1,15 @@
 
-// import Roadmap from "@shared/ui/custom/roadmap";
 import TableCart from "../../widgets/cart-table/table";
 import { useSelector } from "react-redux";
-// import { Button } from "@shared/ui/kit/button";
 import { Link } from "react-router-dom";
+import { Toaster } from "sonner";
 
 const Cart = () => {
-  // const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const dataCart = useSelector((state)=>state.cart.dataCart)
+
+
+  
+  
 
   return (
     <div className="px-[3%] md:px-[10%] space-y-15 py-10">
@@ -17,28 +20,30 @@ const Cart = () => {
 
           <div className="flex justify-between text-lg">
             <span className="text-gray-600">Subtotal:</span>
-            {/* <span className="font-medium">${totalPrice}</span> */}
+            <span className="font-medium">{dataCart.totalPrice}$</span>
           </div>
 
           <div className="flex justify-between text-lg">
             <span className="text-gray-600">Shipping:</span>
-            <span className="font-medium">Free</span>
+            <span className="font-medium line-through text-gray-500">{dataCart.totalDiscountPrice}</span>
           </div>
+          
 
           <hr className="border-t-2 border-gray-300" />
 
           <div className="flex justify-between text-xl font-semibold">
             <span>Total:</span>
-            {/* <span>${totalPrice}</span> */}
+            <span>${dataCart.totalPrice}</span>
           </div>
 
           <div className="pt-4">
             <Link to="/checkout">
-              <button className="w-full h-[50px] text-lg rounded-xl">Proceed to Checkout</button>
+              <button className="w-full h-[50px] text-lg rounded-xl bg-[#DB4444] text-[#fff]">Proceed to Checkout</button>
             </Link>
           </div>
         </div>
       </div>
+      <Toaster richColors position="bottom-right" />
     </div>
   );
 };

@@ -5,7 +5,7 @@ export default function Account() {
   
 
   return (
-    <div className="p-[20px] flex flex-col lg:flex-row lg:mx-auto lg:max-w-[1000px] lg:gap-[60px]">
+    <div className="p-[20px] lg:items-center flex flex-col lg:flex-row lg:mx-auto lg:max-w-[1000px] lg:gap-[60px] max-w-[1920px] w-full">
       <div className="flex flex-col gap-[20px] lg:w-[40%]">
         <div>
           <h2 className="font-bold">Manage My Account</h2>
@@ -26,7 +26,7 @@ export default function Account() {
         <h2 className="font-bold">My WishList</h2>
       </div>
 
-      <div className="shadow-[0px_0px_10px_0px] p-[20px] rounded w-full lg:w-[50%] ">
+      <div className="shadow-[0px_0px_10px_0px] mt-[40px] p-[20px] rounded w-full lg:w-[50%] lg:mt-0 ">
         <div className="flex justify-center">
           {user?.image ? (
             <img
@@ -61,7 +61,7 @@ export default function Account() {
                   First name
                 </legend>
                 <input
-                  value={user.userName}
+                  value={user.firstName}
                   type="text"
                   placeholder="Name"
                   className="w-full p-2 border-gray-300 rounded outline-none focus:border-blue-500"
@@ -72,7 +72,7 @@ export default function Account() {
                   Last name
                 </legend>
                 <input
-                  value={user.firstName}
+                  value={user.lastName}
                   type="text"
                   placeholder="Введите email"
                   className="w-full p-2 border-gray-300 rounded outline-none focus:border-blue-500"

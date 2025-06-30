@@ -10,6 +10,7 @@ export const logIn = createAsyncThunk(
         userName,
         password,
       });
+
       localStorage.setItem("token", data.data.data);
        toast.success("Succsessfuly");
       return data.status;

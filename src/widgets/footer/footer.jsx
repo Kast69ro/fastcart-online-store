@@ -5,7 +5,7 @@ import social from '#/Frame 741.png'
 
 export default function Footer() {
   return (
-    <div className='bg-[#000] text-[#fff] p-[30px] flex flex-col gap-[10px] lg:flex-row lg:justify-between lg:p-[50px_30px]  '>
+    <div className='bg-[#000] text-[#fff] p-[30px] flex flex-col gap-[10px] lg:flex-row lg:justify-between lg:p-[50px_30px] mt-[50px] max-w-[1920px] mx-auto w-full   '>
       <div>
         <h3>Exclusive</h3>
         <h5>Subscribe</h5>

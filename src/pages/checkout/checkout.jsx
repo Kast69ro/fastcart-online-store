@@ -64,12 +64,12 @@ const Checkout = () => {
             </div>
             <div className="flex justify-between">
               <span>Shipping:</span>
-              <span>Free</span>
+              <span className="text-green-500 font-medium">{products.totalDiscountPrice }</span>
             </div>
           </div>
           <div className="flex justify-between text-lg font-semibold border-b pb-4">
             <span>Total:</span>
-            <span>${products.totalPrice}</span>
+            <span>${products.totalPrice - products.totalDiscountPrice }</span>
           </div>
           <div className="space-y-2">
             <div className="flex items-center gap-2">

@@ -7,13 +7,18 @@ import card5 from "#/Services (4).png";
 import card6 from "#/Services (5).png";
 import card7 from "#/Services (6).png";
 import person from "#/Frame 874.png";
-import Card from '../../widgets/for-about/first-card'
-import Card2 from '../../widgets/for-about/second-card'
-import Card3 from '../../widgets/for-about/thrid-card'
+import Card from "../../widgets/for-about/first-card";
+import Card2 from "../../widgets/for-about/second-card";
+import Card3 from "../../widgets/for-about/thrid-card";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
 export default function About() {
   return (
-    <div className="flex flex-col gap-[50px] lg:gap-[100px]">
+    <div className="flex flex-col gap-[50px] lg:gap-[100px] max-w-[1920px] mx-auto w-full">
       <div className="flex flex-col lg:flex-row lg:justify-between lg:p-[30px_60px]">
         <div className="p-[20px] lg:w-[40%]">
           <h1 className="text-[30px] lg:text-[60px]">Our Story</h1>
@@ -44,16 +49,59 @@ export default function About() {
 
       <section>
         <div className=" flex flex-col gap-[30px] lg:flex-row justify-around">
-          <Card2>{[person, "Tom Cruise", "Founder & Chairman"]}</Card2>
-          <Card2>{[person, "Tom Cruise", "Founder & Chairman"]}</Card2>
-          <Card2>{[person, "Tom Cruise", "Founder & Chairman"]}</Card2>
+          <Swiper
+            spaceBetween={20}
+            slidesPerView={1}
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+            modules={[Pagination, Autoplay]}
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 5000 }}
+            loop
+            className="w-full max-w-[1400px]  rounded-[10px] overflow-hidden"
+          >
+            <SwiperSlide className="rounded-[10px] overflow-hidden">
+              <Card2>{[person, "Tom Cruise", "Founder & Chairman"]}</Card2>
+            </SwiperSlide>
+            <SwiperSlide className="rounded-[10px] overflow-hidden">
+              <Card2>{[person, "Tom Cruise", "Founder & Chairman"]}</Card2>
+            </SwiperSlide>
+            <SwiperSlide className="rounded-[10px] overflow-hidden">
+              <Card2>{[person, "Tom Cruise", "Founder & Chairman"]}</Card2>
+            </SwiperSlide>
+
+            <SwiperSlide className="rounded-[10px] overflow-hidden">
+              <Card2>{[person, "Tom Cruise", "Founder & Chairman"]}</Card2>
+            </SwiperSlide>
+          </Swiper>
         </div>
       </section>
       <section>
         <div className="flex flex-col gap-[50px] lg:flex-row lg:justify-around mb-[100px]">
-            <Card3>{[card5,'FREE AND FAST DELIVERY','Free delivery for all orders over $140']}</Card3>
-            <Card3>{[card6,'FREE AND FAST DELIVERY','Free delivery for all orders over $140']}</Card3>
-            <Card3>{[card7,'FREE AND FAST DELIVERY','Free delivery for all orders over $140']}</Card3>
+          <Card3>
+            {[
+              card5,
+              "FREE AND FAST DELIVERY",
+              "Free delivery for all orders over $140",
+            ]}
+          </Card3>
+          <Card3>
+            {[
+              card6,
+              "FREE AND FAST DELIVERY",
+              "Free delivery for all orders over $140",
+            ]}
+          </Card3>
+          <Card3>
+            {[
+              card7,
+              "FREE AND FAST DELIVERY",
+              "Free delivery for all orders over $140",
+            ]}
+          </Card3>
         </div>
       </section>
     </div>

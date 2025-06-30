@@ -12,22 +12,35 @@ import Card3 from "../../widgets/for-about/thrid-card";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getCategory } from "../../entities/api/home/home";
+import HomeGrid from "../../widgets/grid/grid";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const category = useSelector((state) => state.home.dataCategory);
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getCategory());
   }, []);
 
   return (
-    <div className="flex flex-col gap-[100px]">
+    <div className="flex flex-col gap-[100px] max-w-[1440px] mx-auto">
       <section>
         <div className=" lg:flex lg:items-center w-[100%] lg:justify-center lg:p-[20px_50px] ">
           <div className="flex flex-wrap lg:flex-col  lg:w-[20%] p-[10px] lg:justify-around gap-[15px]">
             {category.map((el) => {
-              return <p key={el.id}>{el.categoryName}</p>;
+              return (
+                <p
+                  className="relative text-black hover:text-red-600 after:absolute after:-bottom-1 after:left-0 after:h-[2px]  after:bg-red-600 after:opacity-0 hover:after:opacity-100 after:transition-opacity after:duration-300 after:min-w-[50px] after:max-w-[100px] after:w-full
+"
+                  key={el.id}
+                  onClick={() => navigate(`/products?categoryId=${el.id}`)}
+                >
+                  {el.categoryName}
+                </p>
+              );
             })}
           </div>
           <div className="lg:w-[80%]">
@@ -42,7 +55,7 @@ export default function Home() {
         <Category />
       </section>
       <section>
-        <BestSales />
+        <BestSales title="This month" article="Best Selling Products" />
       </section>
       <section className="flex md:justify-around flex-col md:flex-row items-center bg-black py-[40px] w-[90%] m-auto rounded-[10px] mt-[100px]">
         <aside className="flex flex-col gap-[30px] md:w-[30%] ml-[10px] px-[10px]">
@@ -59,15 +72,36 @@ export default function Home() {
       </section>
 
       <section>
-        <BestSales />
+        <BestSales title="Our Products" article="Explore Our Products" />
       </section>
-       <section>
-              <div className="flex flex-col gap-[50px] lg:flex-row lg:justify-around mb-[100px]">
-                  <Card3>{[card5,'FREE AND FAST DELIVERY','Free delivery for all orders over $140']}</Card3>
-                  <Card3>{[card6,'FREE AND FAST DELIVERY','Free delivery for all orders over $140']}</Card3>
-                  <Card3>{[card7,'FREE AND FAST DELIVERY','Free delivery for all orders over $140']}</Card3>
-              </div>
-            </section>
+      <section className="w-[90$]">
+        <HomeGrid />
+      </section>
+      <section>
+        <div className="flex flex-col gap-[50px] lg:flex-row lg:justify-around mb-[100px]">
+          <Card3>
+            {[
+              card5,
+              "FREE AND FAST DELIVERY",
+              "Free delivery for all orders over $140",
+            ]}
+          </Card3>
+          <Card3>
+            {[
+              card6,
+              "FREE AND FAST DELIVERY",
+              "Free delivery for all orders over $140",
+            ]}
+          </Card3>
+          <Card3>
+            {[
+              card7,
+              "FREE AND FAST DELIVERY",
+              "Free delivery for all orders over $140",
+            ]}
+          </Card3>
+        </div>
+      </section>
     </div>
   );
 }

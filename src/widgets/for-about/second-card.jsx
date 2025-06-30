@@ -4,7 +4,7 @@ import twit from '#/Icon-Twitter.svg'
 export default function SecondCompCard({children}) {
     const [foto,name,title] = children
   return (
-    <div className='p-[10px] lg:w-[30%] '>
+    <div className=' w-[100%]  '>
         <img className='rounded-[5px] w-[100%]' src={foto} alt="" />
         <div>
             <h3 className='text-[32px]'>{name}</h3>

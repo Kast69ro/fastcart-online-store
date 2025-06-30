@@ -15,6 +15,8 @@ import { Provider } from "react-redux";
 import { Store } from "./store/store";
 import Products from "../pages/products/products";
 import Checkout from "../pages/checkout/checkout";
+import Info from "../pages/product-by-id/product-by-id";
+import Wishlist from "../pages/wishlist/wishlist";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -33,6 +35,8 @@ createRoot(document.getElementById("root")).render(
           <Route path="/cart" element={<Cart/>} />
           <Route path="/products" element={<Products/>} />
           <Route path="/checkout" element={<Checkout/>} />
+          <Route path="/info" element={<Info/>} />
+          <Route path="/wishlist" element={<Wishlist/>} />
         </Route>
       </Routes>
     </BrowserRouter>

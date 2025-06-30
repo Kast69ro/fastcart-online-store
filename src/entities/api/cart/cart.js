@@ -7,9 +7,10 @@ export const getCart = createAsyncThunk("cart/getCart", async () => {
   return data.data[0];
 });
 
-export const addToCart = createAsyncThunk("cart/addToCart", async (id) => {
+export const addToCart = createAsyncThunk("cart/addToCart", async (id,{dispatch}) => {
   try {
     await axiosRequest.post(`/Cart/add-product-to-cart?id=${id}`);
+    dispatch(getCart())
   } catch (error) {
     toast.error("This product is already in the cart");
   }

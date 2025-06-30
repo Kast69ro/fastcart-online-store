@@ -5,9 +5,12 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Category = () => {
   const category = useSelector((state) => state.home.dataCategory);
+
+  const navigate = useNavigate();
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -58,12 +61,19 @@ const Category = () => {
       >
         {category.map((cat) => (
           <SwiperSlide key={cat.id}>
-            <div className="bg-white p-4 rounded-xl shadow text-center flex flex-col items-center">
+            <div
+              className="bg-white p-4 rounded-xl 
+    shadow-[0_0_20px_rgba(0,0,0,0.2)] 
+    hover:shadow-[0_0_30px_rgba(0,0,0,0.18)] 
+    text-center flex flex-col items-center 
+    hover:scale-110 transition-transform duration-300 ease-in-out"
+            >
               <div className="w-full h-32 flex items-center justify-center mb-2">
                 <img
                   src={`http://37.27.29.18:8002/images/${cat.categoryImage}`}
                   alt={cat.categoryName}
                   className="max-h-full object-contain"
+                  onClick={() => navigate(`/products?categoryId=${cat.id}`)}
                 />
               </div>
 

@@ -8,6 +8,7 @@ import { addToCart } from "../../entities/api/cart/cart";
 import FilterProduct from "../../widgets/filter-product/filter";
 import { getProductById } from "../../entities/api/products/products";
 import { Link } from "react-router-dom";
+import { addItem, removeItem } from "../../entities/slices/wish/wishSlice";
 
 export default function Products() {
   const product = useSelector((state) => state.home.dataProduct);
@@ -29,19 +30,19 @@ export default function Products() {
   
   
     const toggleWishlist = (product) => {
-      if (localStorage.getItem("token") == null) {
-        toast.error("Please log in to use wishlist");
-        return;
-      }
-      const exists = wishlist.some((item) => item.id === product.id);
-      if (exists) {
-        dispatch(removeItem(product.id));
-        toast.error("Removed from wishlist");
-      } else {
-        dispatch(addItem(product));
-        toast.success("Added to wishlist");
-      }
-    };
+    if (localStorage.getItem("token") == null) {
+      toast.error("Please log in to use wishlist");
+      return;
+    }
+    const exists = wishlist.some((item) => item.id === product.id);
+    if (exists) {
+      dispatch(removeItem(product.id));
+      toast.error("Removed from wishlist");
+    } else {
+      dispatch(addItem(product));
+      toast.success("Added to wishlist");
+    }
+  };
 
 
 
@@ -99,7 +100,7 @@ export default function Products() {
                   </Link>
                 </div>
                 <div className="bg-white w-8 h-8 rounded-full shadow flex items-center justify-center">
-                  <button
+                   <button
                     onClick={() => toggleWishlist(el)}
                     className="inline-block"
                   >

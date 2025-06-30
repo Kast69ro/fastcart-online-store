@@ -21,17 +21,17 @@ export default function Slider() {
       className="w-full max-w-[1200px] h-[400px]  rounded-[10px] overflow-hidden"
     >
       <SwiperSlide className="rounded-[10px] overflow-hidden">
-        <PromoSlide foto={foto} />
+        <PromoSlide foto={foto} discount='50' series='14' />
       </SwiperSlide>
       <SwiperSlide className="rounded-[10px] overflow-hidden">
-        <PromoSlide foto={foto1} />
+        <PromoSlide foto={foto1} discount='5' series='14' />
       </SwiperSlide>
       <SwiperSlide className="rounded-[10px] overflow-hidden">
-        <PromoSlide foto={foto2} />
+        <PromoSlide foto={foto2} discount='10' series='14' />
       </SwiperSlide>
       
       <SwiperSlide className="rounded-[10px] overflow-hidden">
-        <PromoSlide foto={foto3} />
+        <PromoSlide foto={foto3} discount='25' series='14' />
       </SwiperSlide>
     </Swiper>
   )

@@ -8,7 +8,7 @@ import { getBrand, getProductById } from "../../api/products/products";
  const productsSlice = createSlice({
     name:'products',
     initialState:{
-        brandData:[],
+        brandData:[], 
         byIdProduct:null
     },
     reducers:{},

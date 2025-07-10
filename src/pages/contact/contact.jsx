@@ -3,7 +3,7 @@ import call from "#/icons-phone.png";
 
 export default function Contact() {
   return (
-    <div className="flex flex-col gap-[25px] lg:flex-row lg:justify-center lg:gap-[50px] :lg items-center mt-[100px] lg:mt-0 ">
+    <div className="flex flex-col gap-[25px] lg:flex-row lg:justify-center lg:gap-[50px] :lg items-center mt-[100px]  ">
       <div className="shadow-[0px_0px_10px_0px] rounded-[5px] w-[85%] mx-auto lg:w-[20%] lg:p-[70px_20px] lg:mx-0">
         <div className="w-[80%] p-[10px] flex flex-col gap-[10px]">
           <div className="flex items-center gap-[20px]">

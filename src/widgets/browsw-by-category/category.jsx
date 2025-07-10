@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { API } from "../../config/utilits";
 
 const Category = () => {
   const category = useSelector((state) => state.home.dataCategory);
@@ -70,7 +71,7 @@ const Category = () => {
             >
               <div className="w-full h-32 flex items-center justify-center mb-2">
                 <img
-                  src={`http://37.27.29.18:8002/images/${cat.categoryImage}`}
+                  src={`${API}/images/${cat.categoryImage}`}
                   alt={cat.categoryName}
                   className="max-h-full object-contain"
                   onClick={() => navigate(`/products?categoryId=${cat.id}`)}

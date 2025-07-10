@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import {useSelector } from "react-redux";
 import Delivery from "../../widgets/delivery/delivery";
 import Stars from "../../widgets/stars/star";
 import InfoSwiper from "../../widgets/info-swipper/swipper";
@@ -6,16 +6,12 @@ import FlashSales from "../../widgets/best-selling/best-selling";
 
 const Info = () => {
   const product = useSelector((state) => state.products.byIdProduct);
-  console.log(product);
   
-
-  
-
   return (
     <>
     <div className="px-[3%] md:px-[10%] space-y-15 py-10">
       <div className="flex flex-col md:flex-row gap-3 justify-between">
-        <div className="w-full md:w-[60%] h-[650px]">
+        <div className="w-full md:w-[60%] ">
           <InfoSwiper />
         </div>
         <div className="w-full md:w-[35%] flex flex-col gap-7">

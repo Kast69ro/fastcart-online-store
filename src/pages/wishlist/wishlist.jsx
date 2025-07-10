@@ -22,9 +22,10 @@ const Wishlist = () => {
     dispatch(getProduct());
   }, [dispatch]);
 
-  const handleAdd = (id) => {
+  const handleAdd = async (id) => {
     if (localStorage.getItem("token") != null) {
-      dispatch(addToCart(id));
+      await dispatch(addToCart(id));
+      deleteWish(id)
     } else {
       navigate("/log-in");
     }

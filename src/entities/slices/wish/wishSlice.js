@@ -6,10 +6,7 @@ const wishlistSlice = createSlice({
     items: JSON.parse(localStorage.getItem('wishlist')) || [],
   },
   reducers: {
-    setWishlist(state, action) {
-      state.items = action.payload;
-      localStorage.setItem('wishlist', JSON.stringify(state.items));
-    },
+   
     addItem(state, action) {
       state.items.push(action.payload);
       localStorage.setItem('wishlist', JSON.stringify(state.items));

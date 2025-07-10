@@ -17,8 +17,8 @@ const InfoSwiper = () => {
   const images = product?.images || [];
 
   return (
-    <div className="flex flex-col-reverse md:flex-row items-center max-h-[600px] h-[600px] justify-between gap-4">
-      <div className="w-[20%] h-[50vh] flex flex-col">
+    <div className="flex flex-col-reverse md:flex-row items-center max-h-[600px]  justify-between  gap-4">
+      <div className="w-[20%] h-[50vh]  flex-col hidden lg:flex">
         <Swiper
           onSwiper={setThumbsSwiper}
           direction="vertical"

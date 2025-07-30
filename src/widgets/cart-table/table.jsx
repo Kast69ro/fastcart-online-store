@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { decrementProductInCart, deleteCartProduct, getCart, incrementProductInCart, resetCart } from "../../entities/api/cart/cart";
+import { API } from "../../config/utilits";
 
 
 const TableCart = () => {
@@ -30,7 +31,7 @@ const TableCart = () => {
                 <div className="flex items-center gap-5">
                   <div className="w-14 h-14 overflow-hidden rounded-xl border border-gray-200">
                     <img
-                      src={`http://37.27.29.18:8002/images/${e.product.image}`}
+                      src={`${API}/images/${e.product.image}`}
                       alt={e.product.productName}
                       className="object-cover w-full h-full"
                     />
@@ -120,7 +121,7 @@ const TableCart = () => {
             <div className="flex gap-4 items-center">
               <div className="w-16 h-16 rounded-xl overflow-hidden border border-gray-200">
                 <img
-                  src={`http://37.27.29.18:8002/images/${e.product.image}`}
+                  src={`${API}/images/${e.product.image}`}
                   alt={e.product.productName}
                   className="object-cover w-full h-full"
                 />

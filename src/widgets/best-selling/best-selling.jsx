@@ -7,6 +7,7 @@ import { addToCart, getCart } from "../../entities/api/cart/cart";
 import { getProductById } from "../../entities/api/products/products";
 import { toast, Toaster } from "sonner";
 import { addItem, removeItem } from "../../entities/slices/wish/wishSlice";
+import { API } from "../../config/utilits";
 
 const FlashSales = ({ title, article }) => {
   const product = useSelector((state) => state.home.dataProduct);
@@ -122,7 +123,7 @@ const FlashSales = ({ title, article }) => {
               </div>
               <div className="w-full h-40 flex items-center justify-center">
                 <img
-                  src={"http://37.27.29.18:8002/images/" + el.image}
+                  src={`${API}/images/` + el.image}
                   alt={el.productName}
                   className="max-h-full object-contain"
                 />
